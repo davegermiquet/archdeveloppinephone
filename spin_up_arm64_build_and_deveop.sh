@@ -43,13 +43,13 @@ EXPOSE 3635
 EXPOSE 3636
 
 ENTRYPOINT /usr/bin/distccd  --log-level debug --log-file=/var/log/distcd.log  --allow-private  --daemon $OPTIONS
-EOF
 
 
 RUN mkdir -p /tmp/deploypackage
 COPY ./PKGBUILD /tmp/deploypackage
 RUN cd /tmp/deploypackage
 RUN makepkg -s
+EOF
 
 cd /tmp/dev
 docker build . -t distcompile
