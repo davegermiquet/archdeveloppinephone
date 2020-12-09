@@ -7,3 +7,7 @@ spin_up_arm64_build_and_deveop.sh
 with the hosts defined that you ran the client.
 
 Currently Implemented:
+
+
+Credits so far
+@JustinL (And other people in #PinePhone the best place to be!)
