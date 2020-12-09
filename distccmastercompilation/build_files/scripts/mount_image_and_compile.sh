@@ -27,10 +27,10 @@ sudo mount --rbind /dev /tmp/modified_image/dev
 sudo mount --rbind /run /tmp/modified_image/run
 
 sudo cp /etc/resolv.conf /tmp/modified_image/etc/resolv.conf
-
+sudo chown -R alarm /tmp/setup
 sudo chroot /tmp/modified_image/ sh -c 'cd /tmp/setup/scripts/; \
 ./setup_distcc.sh; \
-sudo -u alarm "export DISTCC_HOSTS=\"192.168.1.183/4 192.168.1.184/4\"; \
+sudo -u alarm sh -c "export DISTCC_HOSTS=\"192.168.1.183/4 192.168.1.184/4\"; \
 export CCACHE_DIR=/root/.ccache;export PATH=\"/usr/lib/distcc/:$PATH\"; \
 makepkg -s --noconfirm"'
 
