@@ -27,12 +27,6 @@ USER aurpackageadd
 
 RUN mkdir -p /tmp/addPackage
 WORKDIR /tmp/addPackage
-RUN git clone https://aur.archlinux.org/distccd-alarm.git
-WORKDIR /tmp/addPackage/distccd-alarm
-RUN sh -c "makepkg -si --noconfirm"
-
-RUN mkdir -p /tmp/addPackage
-WORKDIR /tmp/addPackage
 RUN git clone https://aur.archlinux.org/binfmt-qemu-static.git
 WORKDIR /tmp/addPackage/binfmt-qemu-static
 RUN sh -c "makepkg -si --noconfirm"
