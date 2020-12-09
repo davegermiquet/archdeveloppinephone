@@ -2,7 +2,7 @@
 
 sudo mknod -m 0660 "/tmp/archimage-docker-loop0" b 7 101
 cd /tmp/dir_pkg_build/imagetomount
-sudo losetup -P /tmp/archimage-docker-loop0  /tmp/dir_pkg_build/imagetomount/archlinux-pinephone-20201204.img\
+sudo losetup -P /tmp/archimage-docker-loop0  /tmp/dir_pkg_build/imagetomount/archlinux-pinephone-20201204.img
 sudo parted /tmp/archimage-docker-loop0 resizepart 1 50G
 
 sudo /tmp/dir_pkg_build/createnode.sh
