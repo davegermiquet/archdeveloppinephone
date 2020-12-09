@@ -2,7 +2,6 @@
 mkdir -p /tmp/dev/
 cat << EOF > /tmp/dev/Dockerfile
 FROM archlinux:base-devel
-ARG PACKAGES="ARMv8"
 
 # ENV OPTIONS --allow 1.1.1.1 --allow 2.2.2.2
 
@@ -39,4 +38,5 @@ ENTRYPOINT /usr/bin/distccd --no-detach --log-level debug --log-file=/var/log/di
 EOF
 cd /tmp/dev
 docker build . -t distccarch
-docker stop distccarch;docker rm distccarch;docker run -d  -p3636:3636 -p3635:3635 -p3632:3632 -p3634:3634 -p3633:3633 -eOPTIONS="--allow 0.0.0.0/0" --name distccarch -dit distccarch /bin/bash
+docker stop distccarch;docker rm distccarch;docker run -d -p3636:3636 -p3635:3635 -p3632:3632 -p3634:3634 -p3633:3633 -eOPTIONS="--allow 0.0.0.0/0" --name distccarch -dit distccarch /bin/bash
+
