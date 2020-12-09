@@ -12,8 +12,8 @@ build() {
    mkdir build
    cd build
    cmake .. -DCMAKE_BUILD_TYPE=Release -DSERVERONLY=OFF -DRELEASE_WITH_DEBUG_FILE=OFF
-   make
-}
+   make -j6
+} 
 
 package() {
    cd zandronum/build
