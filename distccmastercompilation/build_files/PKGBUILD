@@ -3,7 +3,7 @@ pkgver=3.1
 pkgrel=1
 pkgdesc='Zandronum Doom Like Game'
 url=https://github.com/ptitSeb/zandronum
-arch=('arm64')
+arch=('aarch64')
 license=('Sleepycat License')
 
 build() {

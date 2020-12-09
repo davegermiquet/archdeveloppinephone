@@ -25,11 +25,10 @@ sudo mount -t proc /proc /tmp/modified_image/proc
 sudo mount --rbind /sys /tmp/modified_image/sys
 sudo mount --rbind /dev /tmp/modified_image/dev
 sudo mount --rbind /run /tmp/modified_image/run
-
 sudo cp /etc/resolv.conf /tmp/modified_image/etc/resolv.conf
-sudo chown -R alarm /tmp/modified_image/tmp/
 sudo chroot /tmp/modified_image/ sh -c 'cd /tmp/setup/; \
 scripts/setup_distcc.sh; \
+sudo chown -R alarm /tmp/; \
 sudo -u alarm sh -c "export DISTCC_HOSTS=\"192.168.1.183/4 192.168.1.184/4\"; \
 export CCACHE_DIR=/root/.ccache;export PATH=\"/usr/lib/distcc/:$PATH\"; 
 ls -la /tmp/setup;\
