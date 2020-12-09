@@ -33,6 +33,7 @@ sudo -u alarm sh -c "export DISTCC_HOSTS=\"192.168.1.183/4 192.168.1.184/4\"; \
 export CCACHE_DIR=/root/.ccache;export PATH=\"/usr/lib/distcc/:$PATH\"; 
 ls -la /tmp/setup;\
 makepkg -s --noconfirm"'
+cat /tmp/modified_image/tmp/setup/src/zandronum/build/CMakeFiles/CMakeError.log
 mkdir /tmp/setup/release
 cp /tmp/modified_image/tmp/setup/*.zst /tmp/setup/release
 
