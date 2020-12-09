@@ -9,5 +9,8 @@ with the hosts defined that you ran the client.
 Currently Implemented:
 
 
-Credits so far
+Credits so far:
+@PixelPaintBrush
 @JustinL (And other people in #PinePhone the best place to be!)
+
+Just ask to be put on here actually , you know who talks in #PinePhone the open source #PinePhone community rocks!
