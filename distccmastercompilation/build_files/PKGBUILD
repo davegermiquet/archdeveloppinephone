@@ -8,9 +8,11 @@ license=('Sleepycat License')
 
 build() {
    git clone https://github.com/ptitSeb/zandronum.git
+   ls -la
+   cp GameCompiler.patch zandronum/game-music-emu/
    cd zandronum
    git checkout -b 9156
-   cp ../GameCompiler.patch game-music-emu/
+   
    cd game-music-emu/
    patch CMakeLists.txt < GameCompiler.patch
    cd ../build
