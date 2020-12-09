@@ -1,13 +1,36 @@
-spin_up_distcc.sh
-- Run this file on every computer you own, which will provide you a distcc compiler running arch,  so you can cross compile arm images :)
+How to start up a distcc client (on computational servers):
 
-spin_up_arm64_build_and_deveop.sh
+Make sure docker and docker-compose is installed:
 
-- Still in progress. Put PKGBUILD in home folder, set your ARG/ENVIRONMENT Variables (See docker file) and it'll compile your package 
-with the hosts defined that you ran the client.
+Git clone this folder
 
-Currently Implemented:
+then typethis
 
+> docker-compose -f docker-compose-slave.yml up -d
+
+
+Want to build a package:
+
+(Read the vars in dockerfile you can only change DISTCC_HOSTS for now at the moment i still have to make the others configurable)
+
+Put the arch image in the following folder (ARCH IMAGE PLEASE): build_files/image  (this one example: https://github.com/dreemurrs-embedded/Pine64-Arch/releases)
+
+named: pinephonearch.img
+
+(Example is the following):
+
+Edit the PKGBUILD file in the build_files folder and make your download/build instuctions in makepkg format (as mentioned here)
+
+https://wiki.archlinux.org/index.php/makepkg
+
+Put all your file thats needed in the build_files folder, or in that folder its a shared volumes
+
+Run This:
+
+> docker-compose -f docker-compose-master.yml up 
+
+
+I make no guaranetees. but this shouldn't break anything. The content used here is AS-IS
 
 Credits so far:
 @PixelPaintBrush
