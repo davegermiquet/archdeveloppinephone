@@ -32,3 +32,4 @@ done
 export DISTCC_HOSTS="192.168.1.183/4 192.168.1.184/4"
 export CCACHE_DIR=/root/.ccache
 export PATH="/usr/lib/distcc/:$PATH"
+cat  /usr/lib/distcc/distccwrapper
