@@ -62,7 +62,7 @@ ENV DOWNLOAD_ARCH_IMAGE=$ARG_DOWNLOAD_IMAGE
 # Prerequisites for adding the repositories
 # Remove the apt cache to keep layer-size small.
 #!/usr/bin/env bash
-RUN pacman -Syu --noconfirm xz qemu-arch-extra distcc git $ENV_PACKAGES
+RUN pacman -Syu --noconfirm xz qemu-arch-extra distcc git rsync $ENV_PACKAGES
 RUN useradd -m -g users -G wheel,storage,power -s /bin/bash  aurpackageadd
 RUN passwd -d aurpackageadd
 RUN echo "%wheel      ALL=(ALL) ALL" > /etc/sudoers
@@ -78,26 +78,25 @@ RUN sh -c "makepkg -si --noconfirm"
 
 RUN mkdir -p /tmp/addPackage
 WORKDIR /tmp/addPackage
-RUN git clone https://aur.archlinux.org/qemu-user-static-bin.git
-WORKDIR /tmp/addPackage/qemu-user-static-bin
+RUN git clone https://aur.archlinux.org/binfmt-qemu-static.git
+WORKDIR /tmp/addPackage/binfmt-qemu-static
 RUN sh -c "makepkg -si --noconfirm"
-
 
 RUN mkdir -p /tmp/addPackage
 WORKDIR /tmp/addPackage
-RUN git clone https://aur.archlinux.org/binfmt-qemu-static.git
-WORKDIR /tmp/addPackage/binfmt-qemu-static
+RUN git clone https://aur.archlinux.org/qemu-user-static-bin.git
+WORKDIR /tmp/addPackage/qemu-user-static-bin
 RUN sh -c "makepkg -si --noconfirm"
 
 
 COPY build_files /tmp/dir_pkg_build
 COPY tmp/environment.func /tmp/dir_pkg_build/environment.func
 RUN ls /tmp/dir_pkg_build
-RUN mv /tmp/dir_pkg_build/imagetomount/$ARCH_IMAGE /tmp/pinephone-arch.img.xz
 ENTRYPOINT /tmp/dir_pkg_build/mount_image_and_compile.sh
 EOF
 
 
 docker build . -t distcompile
-docker stop distcompile;docker rm distcompile;docker run -d --name distcompile -dit distcompile /bin/bash
+docker stop distcompile;docker rm distcompile;
+docker run  -a STDIN -a STDOUT -i --privileged=true --name distcompile -t distcompile /bin/bash
 
