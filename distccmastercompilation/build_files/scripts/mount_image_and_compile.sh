@@ -18,7 +18,7 @@ sudo cp /usr/bin/qemu-aarch64-static /tmp/modified_image/usr/bin/
 sudo mkdir -p /tmp/modified_image/tmp/setup/scripts
 
 sudo cp /tmp/setup/scripts/setup_distcc.sh /tmp/modified_image/tmp/setup/scripts/
-
+sudo cp /tmp/setup/GameMusicCompilerPtch.patch /tmp/modified_image/tmp/setup/GameCompiler.patch
 sudo cp /tmp/setup/PKGBUILD /tmp/modified_image/tmp/setup/
 
 sudo mount -t proc /proc /tmp/modified_image/proc
