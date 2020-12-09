@@ -1,0 +1,7 @@
+version: "3.3"
+services:
+  arch_app_maker:
+    build: ./distccmastercompilation/
+    volumes:
+      - "./build_files:/tmp/setup:rw"
+      
