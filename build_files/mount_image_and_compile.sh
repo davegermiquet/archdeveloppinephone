@@ -4,7 +4,7 @@ sudo mknod -m 0660 "/tmp/archimage-docker-loop0" b 7 101
 cd /tmp/dir_pkg_build/imagetomount
 sudo losetup -P /tmp/archimage-docker-loop0  /tmp/dir_pkg_build/imagetomount/archlinux-pinephone-20201204.img
 sudo /tmp/dir_pkg_build/createnode.sh
-mkdir /media/archimage
+mkdir -p /media/archimage
 sudo mount /tmp/archimage-docker-loop0p1 /media/archimage
 sudo cp /usr/bin/qemu-aarch64-static /media/archimage/usr/bin/
 sudo mkdir /media/archimage/tmp/dir_pkg_build
