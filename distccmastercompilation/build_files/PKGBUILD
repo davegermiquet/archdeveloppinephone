@@ -14,7 +14,6 @@ build() {
    git log
    cd game-music-emu/
    patch CMakeLists.txt < GameCompiler.patch
-   cat CMakeLists.txt.rej
    cd ../
    mkdir build
    cd build
