@@ -99,4 +99,5 @@ EOF
 docker build . -t distcompile
 docker stop distcompile;docker rm distcompile;
 docker run  -a STDIN -a STDOUT -i --privileged=true --name distcompile -t distcompile /bin/bash
+losetup -D 
 
