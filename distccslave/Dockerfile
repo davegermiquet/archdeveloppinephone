@@ -5,8 +5,7 @@ FROM archlinux:base-devel
 # Prerequisites for adding the repositories
 # Remove the apt cache to keep layer-size small.
 #!/usr/bin/env bash
-RUN pacman -Syu --noconfirm distcc git
-
+RUN pacman -Syu --noconfirm distcc git aarch64-linux-gnu-gcc
 
 RUN useradd -r -s /usr/bin/nologin aurpackageadd
 RUN usermod --append --groups wheel aurpackageadd
