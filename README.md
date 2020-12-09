@@ -12,5 +12,6 @@ Currently Implemented:
 Credits so far:
 @PixelPaintBrush
 @JustinL (And other people in #PinePhone the best place to be!)
+@Armen138
 
 Just ask to be put on here actually , you know who talks in #PinePhone the open source #PinePhone community rocks!
