@@ -41,3 +41,17 @@ Credits so far:
 @Armen138
 
 Just ask to be put on here actually , you know who talks in #PinePhone the open source #PinePhone community rocks!
+
+To reset and delete the container:
+
+docker-compose -f docker-compose-slave.yml rm
+
+
+To rebuild the container:
+
+docker-compose -f docker-compose-slave.yml build
+
+
+
+
+
