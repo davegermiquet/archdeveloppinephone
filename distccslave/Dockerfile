@@ -30,7 +30,7 @@ RUN sh -c 'cd /usr/bin;for file in /usr/bin/aarch64*; do ln -s ${file} aarch64-u
 RUN sh -c 'cd /usr/bin;mv  cc oldcc'
 RUN sh -c 'cd /usr/bin;mv  c++ oldcc++'
 RUN sh -c 'cd /usr/bin;ln -s /usr/bin/aarch64-unknown-linux-gnu-c++ c++'
-RUN sh -c 'cd /usr/bin;ln -s /usr/bin/aarch64-unknown-linux-gnu-cc cc'
+RUN sh -c 'cd /usr/bin;ln -s /usr/bin/aarch64-unknown-linux-gnu-gcc cc'
 USER distcc
 # This is the operations port
 EXPOSE 3632
