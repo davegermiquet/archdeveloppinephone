@@ -7,21 +7,26 @@ arch=('aarch64')
 license=('Sleepycat License')
 
 build() {
+   rm -rf zandronum
    git clone https://github.com/ptitSeb/zandronum.git
-   cd zandronum
-   git checkout -b diffBranch 9156afd
-   cp /tmp/setup/GameCompiler.patch game-music-emu/
+   cp /tmp/setup/GameCompiler.patch zandronum/game-music-emu/
+   cd  zandronum/game-music-emu/
    git log
-   cd game-music-emu/
    patch CMakeLists.txt < GameCompiler.patch
-   cd ../
-   mkdir build
+   cd ../../
+   if [[ -d ./build ]] ; then
    cd build
-   cmake .. -DCMAKE_BUILD_TYPE=Release -DNO_ASM=ON -DNO_FMOD=ON -DSERVERONLY=OFF -DRELEASE_WITH_DEBUG_FILE=OFF
+   else
+   mkdir build
+   fi
+   export CFLAGS="-mcpu=native"
+   export CXXFLAGS="-mcpu=native"  
+   export DISTCC_HOSTS="192.168.1.183/3 192.168.1.184/3"
+   PATH=/usr/lib/distcc:$PATH cmake ../zandronum -DCMAKE_BUILD_TYPE=Release -DNO_ASM=ON -DNO_FMOD=ON -DSERVERONLY=OFF -DRELEASE_WITH_DEBUG_FILE=OFF
    make -j6
 } 
 
 package() {
-   cd zandronum/build
+   cd build
    make install
 }

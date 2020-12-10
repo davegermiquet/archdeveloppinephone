@@ -17,7 +17,7 @@ ENV ENV_DISTCC_HOSTS=$ARG_DISTHOSTS
 # Remove the apt cache to keep layer-size small.
 #!/usr/bin/env bash
 
-RUN pacman -Syu --noconfirm --needed xz qemu-arch-extra distcc git rsync $ENV_PACKAGES
+RUN pacman -Syu --noconfirm --needed xz qemu-arch-extra git rsync $ENV_PACKAGES
 RUN useradd -m -g users -G wheel,storage,power -s /bin/bash  aurpackageadd
 RUN passwd -d aurpackageadd
 RUN echo "%wheel      ALL=(ALL) ALL" > /etc/sudoers
