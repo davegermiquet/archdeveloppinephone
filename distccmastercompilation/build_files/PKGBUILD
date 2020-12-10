@@ -7,22 +7,39 @@ arch=('aarch64')
 license=('Sleepycat License')
 
 build() {
+   # Cleans Repository
+   
    rm -rf zandronum
    git clone https://github.com/ptitSeb/zandronum.git
+   
+   # Patches code with bug fixes that aren not commited
+   
    cp /tmp/setup/GameCompiler.patch zandronum/game-music-emu/
-   cd  zandronum/game-music-emu/
+   cd zandronum/game-music-emu/
    git log
    patch CMakeLists.txt < GameCompiler.patch
+   
+   # If build is there dont recompile just continue
+   
    cd ../../
+   
    if [[ -d ./build ]] ; then
    cd build
    else
    mkdir build
+   cd build 
    fi
-   export CFLAGS="-mcpu=native"
-   export CXXFLAGS="-mcpu=native"  
+  
+   # Example PinePhone Compiler Flags for cross compiling and proper settings
+   
+   export CFLAGS="-march=armv8-a+crypto+crc -mtune=cortex-a72.cortex-a53" 
+   export CXXFLAGS="-march=armv8-a+crypto+crc -mtune=cortex-a72.cortex-a53"
+   
    export DISTCC_HOSTS="192.168.1.183/3 192.168.1.184/3"
    PATH=/usr/lib/distcc:$PATH cmake ../zandronum -DCMAKE_BUILD_TYPE=Release -DNO_ASM=ON -DNO_FMOD=ON -DSERVERONLY=OFF -DRELEASE_WITH_DEBUG_FILE=OFF
+   
+   # Compile with 6 CPUS
+   
    make -j6
 } 
 

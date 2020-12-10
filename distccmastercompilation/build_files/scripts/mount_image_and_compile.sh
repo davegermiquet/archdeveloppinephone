@@ -35,6 +35,7 @@ sudo cp /etc/resolv.conf /tmp/modified_image/etc/resolv.conf
 sudo chroot /tmp/modified_image/ sh -c 'cd /tmp/setup/; \
 scripts/setup_distcc.sh; \
 chown -R alarm /tmp/setup
+cat /tmp/setup/PKGBUILD
 sudo -u alarm  PATH=$PATH:/usr/lib/distcc:/usr/bin:/usr/sbin:/bin:/sbin makepkg -s --noconfirm'
 cat /tmp/modified_image/tmp/setup/src/zandronum/build/CMakeFiles/CMakeError.log
 mkdir /tmp/setup/release
