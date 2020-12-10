@@ -23,6 +23,9 @@ Edit the PKGBUILD file in the build_files folder and make your download/build in
 
 https://wiki.archlinux.org/index.php/makepkg
 
+When building this, will only build once the package is made, you can run it everytime, and it won't reinitialize unless necessary.
+If all else fails delete image and try again, because sometimes a compilation won't reconfigure (IE CMAKE)
+
 Put all your file thats needed in the build_files folder, or in that folder its a shared volumes
 
 Run This:
