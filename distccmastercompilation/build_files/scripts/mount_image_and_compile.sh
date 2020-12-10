@@ -6,6 +6,8 @@ sudo mknod -m 0660 "/tmp/archimage-docker-loop0" b 7 101
 
 cd /tmp/setup/
 
+sudo /tmp/setup/scripts/download_image.sh
+
 sudo losetup -P /tmp/archimage-docker-loop0  /tmp/setup/image/pinephonearch.img
 sudo /tmp/setup/scripts/createnode.sh
 
