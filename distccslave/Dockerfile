@@ -27,6 +27,9 @@ USER root
 RUN touch /var/log/distccd.log 
 RUN chown distcc /var/log/distccd.log 
 RUN sh -c 'cd /usr/bin;for file in /usr/bin/aarch64*; do ln -s ${file} aarch64-unknown-linux-gnu-`echo "$file" | cut -d'-' --output-delimiter='-' -f4-`;done'
+RUN sh -c 'cd /usr/bin;mv c++ oldc++'
+RUN sh -c 'cd /usr/bin;ln -s /usr/bin/aarch64-unknown-linux-gnu-c++ c++'
+
 USER distcc
 # This is the operations port
 EXPOSE 3632
