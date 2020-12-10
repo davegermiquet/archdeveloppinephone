@@ -5,7 +5,7 @@ FROM archlinux:base-devel
 # Prerequisites for adding the repositories
 # Remove the apt cache to keep layer-size small.
 #!/usr/bin/env bash
-RUN pacman -Syu --noconfirm distcc git aarch64-linux-gnu-gcc
+RUN pacman -Syu --noconfirm distcc git aarch64-linux-gnu-gcc awk
 
 RUN useradd -r -s /usr/bin/nologin aurpackageadd
 RUN usermod --append --groups wheel aurpackageadd
@@ -14,7 +14,6 @@ RUN echo "%wheel      ALL=(ALL) ALL" > /etc/sudoers
 RUN chown -c root:root /etc/sudoers
 RUN chmod -c 0440 /etc/sudoers
 RUN chmod 755 /var/log
-
 USER aurpackageadd
 
 
@@ -27,7 +26,7 @@ RUN sh -c "makepkg -si --noconfirm"
 USER root
 RUN touch /var/log/distccd.log 
 RUN chown distcc /var/log/distccd.log 
-
+RUN sh -c 'cd /usr/bin;for file in /usr/bin/aarch64*; do ln -s ${file} aarch64-unknown-linux-gnu-`echo "$file" | cut -d'-' --output-delimiter='-' -f4-`;done'
 USER distcc
 # This is the operations port
 EXPOSE 3632

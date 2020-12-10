@@ -17,7 +17,7 @@ build() {
    cd ../
    mkdir build
    cd build
-   cmake .. -DCMAKE_BUILD_TYPE=Release -DSERVERONLY=OFF -DRELEASE_WITH_DEBUG_FILE=OFF
+   cmake .. -DCMAKE_BUILD_TYPE=Release -DNO_ASM=ON -DNO_FMOD=ON -DSERVERONLY=OFF -DRELEASE_WITH_DEBUG_FILE=OFF
    make -j6
 } 
 
