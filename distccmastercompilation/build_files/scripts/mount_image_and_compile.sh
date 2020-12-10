@@ -39,7 +39,10 @@ scripts/setup_distcc.sh; \
 chown -R alarm /tmp/setup
 cat /tmp/setup/PKGBUILD
 sudo -u alarm  PATH=$PATH:/usr/lib/distcc:/usr/bin:/usr/sbin:/bin:/sbin makepkg -s --noconfirm'
-cat /tmp/modified_image/tmp/setup/src/zandronum/build/CMakeFiles/CMakeError.log
+
+# Release files are located below
+
+cat /tmp/modified_image/tmp/setup/src/build/CMakeFiles/CMakeError.log
 mkdir /tmp/setup/release
 cp /tmp/modified_image/tmp/setup/*.zst /tmp/setup/release
 

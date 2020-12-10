@@ -32,11 +32,14 @@ build() {
   
    # Example PinePhone Compiler Flags for cross compiling and proper settings
    
-   export CFLAGS="-march=armv8-a+crypto+crc -mtune=cortex-a72.cortex-a53" 
-   export CXXFLAGS="-march=armv8-a+crypto+crc -mtune=cortex-a72.cortex-a53"
+   export CFLAGS="-march=armv8-a+crypto+crc -mtune=cortex-a53 -fPIC"  
+   export CXXFLAGS="-march=armv8-a+crypto+crc -mtune=cortex-a53 -fPIC"
+   export NO_ASM=ON
+   export NO_FMOD=ON
+   
    
    export DISTCC_HOSTS="192.168.1.183/3 192.168.1.184/3"
-   PATH=/usr/lib/distcc:$PATH cmake ../zandronum -DCMAKE_BUILD_TYPE=Release -DNO_ASM=ON -DNO_FMOD=ON -DSERVERONLY=OFF -DRELEASE_WITH_DEBUG_FILE=OFF
+   PATH=/usr/lib/distcc:$PATH cmake ../zandronum -DCMAKE_BUILD_TYPE=Release -D -DNO_FMOD=ON -DSERVERONLY=OFF -DRELEASE_WITH_DEBUG_FILE=OFF
    
    # Compile with 6 CPUS
    
