@@ -14,7 +14,7 @@ sudo /tmp/setup/scripts/createnode.sh
 sudo mkdir -p /tmp/image_attached
 sudo mkdir -p /tmp/modified_image
 
-sudo mount /tmp/archimage-docker-loop0p1 /tmp/image_attached	
+sudo mount /tmp/archimage-docker-loop0p1 /tmp/image_attached
 sudo rsync -avh /tmp/image_attached/ /tmp/modified_image/
 sudo cp /usr/bin/qemu-aarch64-static /tmp/modified_image/usr/bin/
 
@@ -26,11 +26,12 @@ sudo mount --rbind /dev /tmp/modified_image/dev
 sudo mount --rbind /run /tmp/modified_image/run
 fi
 
-# Setup Done All Above is only done once Refresh Files 
+# Setup Done All Above is only done once Refresh Files
 
 
 sudo cp /tmp/setup/scripts/setup_distcc.sh /tmp/modified_image/tmp/setup/scripts/
-sudo cp /tmp/setup/GameMusicCompilerPtch.patch /tmp/modified_image/tmp/setup/GameCompiler.patch
+mkdir -p /tmp/modified_image/setup/patches
+sudo cp /tmp/setup/patches/* /tmp/modified_image/tmp/setup/patches
 sudo cp /tmp/setup/PKGBUILD /tmp/modified_image/tmp/setup/
 sudo cp /etc/resolv.conf /tmp/modified_image/etc/resolv.conf
 
