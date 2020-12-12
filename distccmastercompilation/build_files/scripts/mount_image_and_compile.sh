@@ -35,8 +35,6 @@ sudo cp /tmp/setup/scripts/testbuild.sh /tmp/modified_image/tmp/setup/scripts/
 # Everything below is for your stuff in PKGBUILD
 
 sudo mkdir -p /tmp/modified_image/tmp/setup/patches/
-sudo cp /tmp/setup/patches/* /tmp/modified_image/tmp/setup/patches/
-sudo cp /tmp/setup/PKGBUILD /tmp/modified_image/tmp/setup/
 sudo cp /etc/resolv.conf /tmp/modified_image/etc/resolv.conf
 
 sudo chroot /tmp/modified_image sh -c 'cd /tmp/setup/; \
@@ -51,9 +49,11 @@ cat /tmp/setup/PKGBUILD;\
 echo finished > /tmp/setup/finished'
 fi
 
+sudo cp /tmp/setup/patches/* /tmp/modified_image/tmp/setup/patches/
+sudo cp /tmp/setup/PKGBUILD /tmp/modified_image/tmp/setup/
+
 sudo chroot /tmp/modified_image sh -c 'cd /tmp/setup/; \
-cp /tmp/setup/patches/* /tmp/modified_image/tmp/setup/patches/ ;\
-cp /tmp/setup/PKGBUILD /tmp/modified_image/tmp/setup/ ;\
+chown -R alarm /tmp/setup;\
 sudo -u alarm  PATH=$PATH:/usr/lib/distcc:/usr/bin:/usr/sbin:/bin:/sbin \
 makepkg -s --noconfirm'
 
