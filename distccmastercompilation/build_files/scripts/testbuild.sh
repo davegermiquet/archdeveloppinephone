@@ -14,5 +14,7 @@ cd ${_pkgname}-${pkgver}
 PATH=$PATH:/usr/lib/distcc:/usr/bin:/usr/sbin:/bin:/sbin
 make
 make install
+sh -c "ls -la /usr/bin/fakeroot;ls -la /usr/bin/fakeroot-tcp;exit 0"
+
 
 

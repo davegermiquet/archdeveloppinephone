@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 
-losetup -D all
-
+if [ ! -e /tmp/modified_image/tmp/setup/finished ] ; then
 sudo mknod -m 0660 "/tmp/archimage-docker-loop0" b 7 101
 
 cd /tmp/setup/
 
 sudo /tmp/setup/scripts/download_image.sh
 
-sudo losetup -P /tmp/archimage-docker-loop0  /tmp/setup/image/pinephonearch.img
+sudo losetup -P /tmp/archimage-docker-loop0 /tmp/setup/image/pinephonearch.img
 sudo /tmp/setup/scripts/createnode.sh
 
 sudo mkdir -p /tmp/image_attached/
@@ -16,7 +15,7 @@ sudo mkdir -p /tmp/modified_image/
 
 sudo mount /tmp/archimage-docker-loop0p1 /tmp/image_attached
 sudo rsync -avh /tmp/image_attached/ /tmp/modified_image/
-sudo mount --bind /usr/bin/qemu-aarch64-static /tmp/modified_image/usr/bin
+sudo cp /usr/bin/qemu-aarch64-static /tmp/modified_image/usr/bin
 sudo mkdir -p /tmp/modified_image/tmp/setup/scripts
 
 sudo mount -t proc /proc /tmp/modified_image/proc
@@ -49,7 +48,14 @@ chown -c root:root /etc/sudoers ;\
 chmod -c 0440 /etc/sudoers;\
 chown -R alarm /tmp/setup;\
 cat /tmp/setup/PKGBUILD;\
-sudo -u alarm  PATH=$PATH:/usr/lib/distcc:/usr/bin:/usr/sbin:/bin:/sbin makepkg -s --noconfirm'
+echo finished > /tmp/setup/finished'
+fi
+
+sudo chroot /tmp/modified_image sh -c 'cd /tmp/setup/; \
+sudo -u alarm  PATH=$PATH:/usr/lib/distcc:/usr/bin:/usr/sbin:/bin:/sbin \
+makepkg -s --noconfirm'
+
+
 
 # Release files are located below
 
