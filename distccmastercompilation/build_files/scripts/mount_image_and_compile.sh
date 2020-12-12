@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ ! -f /tmp/modified_image/tmp/setup/scripts ] ; then
+losetup -D all
 
 sudo mknod -m 0660 "/tmp/archimage-docker-loop0" b 7 101
 
@@ -23,7 +23,6 @@ sudo mount -t proc /proc /tmp/modified_image/proc
 sudo mount --rbind /sys /tmp/modified_image/sys
 sudo mount --rbind /dev /tmp/modified_image/dev
 sudo mount --rbind /run /tmp/modified_image/run
-fi
 
 # Setup Done All Above is only done once Refresh Files
 

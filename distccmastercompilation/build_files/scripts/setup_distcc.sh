@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pacman -Syu --needed --noconfirm base-devel rsync distcc sudo git po4a cmake
+pacman -Syu --needed --noconfirm base-devel rsync distcc sudo git po4a cmake automake autoconf
 COMPILERS_TO_REPLACE=$(ls /usr/lib/distcc/ | grep -v distcc)
 
 for bin in ${COMPILERS_TO_REPLACE}; do
