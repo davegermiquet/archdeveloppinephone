@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ ! -f /tmp/modified_image/run ]] ; then
+if [[ ! -f /tmp/modified_image/tmp/setup/scripts ]] ; then
 
 sudo mknod -m 0660 "/tmp/archimage-docker-loop0" b 7 101
 

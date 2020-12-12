@@ -1,9 +1,9 @@
-FROM archlinux:base-devel-20201129.0.10056
+FROM archlinux:base-devel
 # ARG_PACKAGES,ENV_PACKAGES For Packages, needed for Arch Image
 # ARG_DISTHOSTS, ENV_DISTCC_HOSTS For Hosts for it to connect to
 # ARG NUM_OF_CPUS,  ENV_NUM_OF_CPUS For Changing the CPUS to use for DistCC clients
 
-ARG ARG_PACKAGES="autoconf automake binutils bison fakeroot file findutils  flex  gawk  gcc gettext  grep  groff  gzip  libtool m4  make  pacman patch  pkgconf sed sudo texinfo which cmake sdl2 glew-wayland glew1.10 libglvnd openssl sqlite3 gtk2 zlib nasm gxmessage kdialog fluidsynth sdl sdl2 extra/glu f2fs-tools"
+ARG ARG_PACKAGES
 ARG ARG_DISTHOSTS
 ARG NUM_OF_CPUS=3
 
