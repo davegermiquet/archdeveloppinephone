@@ -13,8 +13,6 @@ cd ${_pkgname}-${pkgver}
     --with-ipc=tcp
 PATH=$PATH:/usr/lib/distcc:/usr/bin:/usr/sbin:/bin:/sbin
 make
-cd doc
-po4a -k 0 --rm-backups --variable "srcdir=../doc/" po4a/po4a.cfg
 make install
 
 
