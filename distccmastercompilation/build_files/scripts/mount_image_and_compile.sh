@@ -49,6 +49,10 @@ cat /tmp/setup/PKGBUILD;\
 echo finished > /tmp/setup/finished'
 fi
 
+sudo mount -t proc /proc /tmp/modified_image/proc
+sudo mount --rbind /sys /tmp/modified_image/sys
+sudo mount --rbind /dev /tmp/modified_image/dev
+sudo mount --rbind /run /tmp/modified_image/run
 sudo cp /tmp/setup/patches/* /tmp/modified_image/tmp/setup/patches/
 sudo cp /tmp/setup/PKGBUILD /tmp/modified_image/tmp/setup/
 
