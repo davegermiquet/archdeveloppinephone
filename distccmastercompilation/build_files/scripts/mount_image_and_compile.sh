@@ -11,13 +11,12 @@ sudo /tmp/setup/scripts/download_image.sh
 sudo losetup -P /tmp/archimage-docker-loop0  /tmp/setup/image/pinephonearch.img
 sudo /tmp/setup/scripts/createnode.sh
 
-sudo mkdir -p /tmp/image_attached
-sudo mkdir -p /tmp/modified_image
+sudo mkdir -p /tmp/image_attached/
+sudo mkdir -p /tmp/modified_image/
 
 sudo mount /tmp/archimage-docker-loop0p1 /tmp/image_attached
 sudo rsync -avh /tmp/image_attached/ /tmp/modified_image/
-sudo cp /usr/bin/qemu-aarch64-static /tmp/modified_image/usr/bin/
-
+sudo mount --bind /usr/bin/qemu-aarch64-static /tmp/modified_image/usr/bin
 sudo mkdir -p /tmp/modified_image/tmp/setup/scripts
 
 sudo mount -t proc /proc /tmp/modified_image/proc
@@ -30,12 +29,12 @@ fi
 
 
 sudo cp /tmp/setup/scripts/setup_distcc.sh /tmp/modified_image/tmp/setup/scripts/
-mkdir -p /tmp/modified_image/setup/patches
-sudo cp /tmp/setup/patches/* /tmp/modified_image/tmp/setup/patches
+sudo mkdir -p /tmp/modified_image/tmp/setup/patches/
+sudo cp /tmp/setup/patches/* /tmp/modified_image/tmp/setup/patches/
 sudo cp /tmp/setup/PKGBUILD /tmp/modified_image/tmp/setup/
 sudo cp /etc/resolv.conf /tmp/modified_image/etc/resolv.conf
 
-sudo chroot /tmp/modified_image/ sh -c 'cd /tmp/setup/; \
+sudo chroot /tmp/modified_image sh -c 'cd /tmp/setup/; \
 scripts/setup_distcc.sh; \
 chown -R alarm /tmp/setup
 cat /tmp/setup/PKGBUILD

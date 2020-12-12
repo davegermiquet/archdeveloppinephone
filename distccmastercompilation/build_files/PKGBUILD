@@ -32,7 +32,7 @@ done
 change_into_folder() {
 for folder_in_recursive in ${1}/*
 do
-if [ -d ${1} ] 
+if [ -d ${1} ]
 then
 cd ${1}
 change_into_folder ${folder_in_recursive}
@@ -46,7 +46,7 @@ done
 
    change_into_folder src
 
-   cp /tmp/setup/GameCompiler.patch  zandronum/game-music-emu/
+   cp /tmp/setup/patches/GameCompiler.patch  zandronum/game-music-emu/
    cd zandronum/game-music-emu/
    git log
    patch CMakeLists.txt < GameCompiler.patch

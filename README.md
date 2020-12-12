@@ -1,3 +1,8 @@
+You will need the following applications/package installed on DOCKERS host system:
+
+qemu qemu-user-static
+
+
 How to start up a distcc client (on computational servers):
 
 Make sure docker and docker-compose is installed:
@@ -7,7 +12,6 @@ Git clone this folder
 then typethis
 
 > docker-compose -f docker-compose-slave.yml up -d
-
 
 Want to build a package:
 

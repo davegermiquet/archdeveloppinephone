@@ -5,4 +5,3 @@ services:
     privileged: true
     volumes:
       - "./distccmastercompilation/build_files/:/tmp/setup/:rw"
-      
