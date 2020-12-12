@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 export pkgname=fakeroot-tcp
 export _pkgname=fakeroot
 export pkgver=1.25.3
@@ -10,6 +11,7 @@ cd ${_pkgname}-${pkgver}
     --libdir=/usr/lib/libfakeroot \
     --disable-static \
     --with-ipc=tcp
+PATH=$PATH:/usr/lib/distcc:/usr/bin:/usr/sbin:/bin:/sbin
 make
 cd doc
 po4a -k 0 --rm-backups --variable "srcdir=../doc/" po4a/po4a.cfg

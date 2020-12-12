@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ ! -f /tmp/modified_image/tmp/setup/scripts ] ; then
 
@@ -54,8 +54,6 @@ sudo -u alarm  PATH=$PATH:/usr/lib/distcc:/usr/bin:/usr/sbin:/bin:/sbin makepkg 
 
 # Release files are located below
 
-mkdir /tmp/setup/release
-cp /tmp/modified_image/tmp/setup/*.zst /tmp/setup/release
 
 
 
