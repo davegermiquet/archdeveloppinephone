@@ -14,5 +14,7 @@ make
 cd doc
 po4a -k 0 --rm-backups --variable "srcdir=../doc/" po4a/po4a.cfg
 make install
-install -dm755 "$pkgdir"/etc/ld.so.conf.d/
+mv /usr/bin/fakeroot /usr/bin/fakerootold
+ln -s /usr/bin/fakeroot-tcp /usr/bin/fakeroot
+
 
