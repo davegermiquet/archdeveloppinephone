@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ ! -f /tmp/modified_image/tmp/setup/scripts ]] ; then
+if [ ! -f /tmp/modified_image/tmp/setup/scripts ] ; then
 
 sudo mknod -m 0660 "/tmp/archimage-docker-loop0" b 7 101
 
@@ -36,13 +36,16 @@ sudo cp /etc/resolv.conf /tmp/modified_image/etc/resolv.conf
 
 sudo chroot /tmp/modified_image sh -c 'cd /tmp/setup/; \
 scripts/setup_distcc.sh; \
+echo "root ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers
+echo "alarm ALL=(ALL) NOPASSWD:ALL" >>/etc/sudoers
+chown -c root:root /etc/sudoers
+chmod -c 0440 /etc/sudoers
 chown -R alarm /tmp/setup
 cat /tmp/setup/PKGBUILD
 sudo -u alarm  PATH=$PATH:/usr/lib/distcc:/usr/bin:/usr/sbin:/bin:/sbin makepkg -s --noconfirm'
 
 # Release files are located below
 
-cat /tmp/modified_image/tmp/setup/src/build/CMakeFiles/CMakeError.log
 mkdir /tmp/setup/release
 cp /tmp/modified_image/tmp/setup/*.zst /tmp/setup/release
 
