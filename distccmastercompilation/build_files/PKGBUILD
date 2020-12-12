@@ -2,7 +2,6 @@ pkgname=Zandronum
 pkgver=3.1
 pkgrel=1
 pkgdesc='Zandronum Doom Like Game'
-url=https://github.com/ptitSeb/zandronum
 arch=('aarch64')
 license=('Sleepycat License')
 depends=("libglvnd" "sdl" "sdl2" "glew-wayland" "glew1.10" "mercurial" "fluidsynth" "glu" "openssl" "sqlite3" "gtk2" "zlib" "nasm" "gxmessage" "kdialog")
@@ -14,19 +13,6 @@ build() {
    git clone https://github.com/ptitSeb/zandronum.git
 
    # Patches code with bug fixes that arent not commited
-
-   # stricmp has changedd to strcasecmp
-
-
-change_function_to_proper_name(){
-     sed 's/${1}/${2}/g' "${3}" > "${3}.tmp"
-     sleep 1
-     mv  "${3}.tmp" "${3}"
-}
-
-
-   # go back to folder for other patches
-
 
 
    cp /tmp/setup/patches/GameCompiler.patch  zandronum/game-music-emu/
