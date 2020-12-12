@@ -1,5 +1,5 @@
 #!/bin/bash
-pacman -Syu --needed --noconfirm base-devel rsync distcc sudo
+pacman -Syu --needed --noconfirm base-devel rsync distcc sudo git
 COMPILERS_TO_REPLACE=$(ls /usr/lib/distcc/ | grep -v distcc)
 
 for bin in ${COMPILERS_TO_REPLACE}; do
